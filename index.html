@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>幸运大转盘</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <canvas id="fireworks"></canvas>
+    <div id="fireworksTitle" class="fireworks-title" style="display: none;">绚丽烟花秀</div>
+    <div id="newYearText" class="new-year-text" style="display: none;">新年快乐</div>
+    <div class="container">
+        <div class="music-control">
+            <button id="musicToggle" class="music-btn">
+                <i class="fas fa-music"></i>
+            </button>
+        </div>
+        <h1>幸运大转盘</h1>
+        <div class="wheel-container">
+            <div class="pointer"></div>
+            <div class="wheel">
+                <div class="prize"><span>一等奖</span></div>
+                <div class="prize"><span>二等奖</span></div>
+                <div class="prize"><span>三等奖</span></div>
+                <div class="prize"><span>四等奖</span></div>
+                <div class="prize"><span>五等奖</span></div>
+                <div class="prize"><span>六等奖</span></div>
+                <div class="prize"><span>七等奖</span></div>
+                <div class="prize"><span>八等奖</span></div>
+            </div>
+        </div>
+        <button id="spinBtn">开始抽奖</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

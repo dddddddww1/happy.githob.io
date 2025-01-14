@@ -1,0 +1,310 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'ZCOOL XiaoWei', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+    min-height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+h1 {
+    color: #fff;
+    font-size: 2.5em;
+    margin-bottom: 50px;
+    margin-top: -50px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.wheel-container {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    margin-bottom: 30px;
+}
+
+.pointer {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    clip-path: polygon(50% 100%, 0 0, 100% 0);
+    z-index: 2;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
+}
+
+.wheel {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 50%;
+    border: 15px solid #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    transition: transform 8s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+    background: conic-gradient(
+        from 0deg,
+        #ff6b6b 0deg 45deg,
+        #4ecdc4 45deg 90deg,
+        #ff6b6b 90deg 135deg,
+        #4ecdc4 135deg 180deg,
+        #ff6b6b 180deg 225deg,
+        #4ecdc4 225deg 270deg,
+        #ff6b6b 270deg 315deg,
+        #4ecdc4 315deg 360deg
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wheel::before {
+    content: '';
+    position: absolute;
+    width: 75%;
+    height: 75%;
+    background: #fff;
+    border-radius: 50%;
+    z-index: 1;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.prize {
+    position: absolute;
+    width: 50%;
+    height: 1px;
+    transform-origin: left center;
+    left: 50%;
+    top: 50%;
+    z-index: 2;
+}
+
+.prize span {
+    position: absolute;
+    left: 35%;
+    transform: translateY(-50%) rotate(90deg);
+    white-space: nowrap;
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.prize:nth-child(1) span { color: #FFD700; }
+.prize:nth-child(2) span { color: #E6E6FA; }
+.prize:nth-child(3) span { color: #98FB98; }
+.prize:nth-child(4) span { color: #FFA07A; }
+.prize:nth-child(5) span { color: #87CEEB; }
+.prize:nth-child(6) span { color: #DDA0DD; }
+.prize:nth-child(7) span { color: #F0E68C; }
+.prize:nth-child(8) span { color: #FF69B4; }
+
+.prize:nth-child(1) { transform: rotate(22.5deg); }
+.prize:nth-child(2) { transform: rotate(67.5deg); }
+.prize:nth-child(3) { transform: rotate(112.5deg); }
+.prize:nth-child(4) { transform: rotate(157.5deg); }
+.prize:nth-child(5) { transform: rotate(202.5deg); }
+.prize:nth-child(6) { transform: rotate(247.5deg); }
+.prize:nth-child(7) { transform: rotate(292.5deg); }
+.prize:nth-child(8) { transform: rotate(337.5deg); }
+
+#spinBtn {
+    padding: 15px 40px;
+    font-size: 20px;
+    background: linear-gradient(145deg, #ff6b6b, #ee5253);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+#spinBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
+}
+
+#spinBtn:active {
+    transform: translateY(1px);
+}
+
+#spinBtn:disabled {
+    background: linear-gradient(145deg, #999, #888);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+#spinBtn:not(:disabled) {
+    animation: pulse 2s infinite;
+}
+
+@media (max-width: 500px) {
+    .wheel-container {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .prize span {
+        font-size: 20px;
+    }
+    
+    h1 {
+        font-size: 2em;
+    }
+}
+
+.music-control {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.music-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid #fff;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.music-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.music-btn.muted i {
+    color: #ff6b6b;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.music-btn:not(.muted) i {
+    animation: rotate 3s linear infinite;
+}
+
+#fireworks {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.fireworks-title {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 72px;
+    font-weight: bold;
+    color: transparent;
+    background: linear-gradient(45deg, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #4B0082, #8F00FF);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -ms-background-clip: text;
+    -o-background-clip: text;
+    background-clip: text;
+    z-index: 10000;
+    animation: rainbow 5s ease infinite, scale 2s ease infinite;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    font-family: 'ZCOOL XiaoWei', sans-serif;
+    pointer-events: none;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    -ms-text-fill-color: transparent;
+    -o-text-fill-color: transparent;
+}
+
+@keyframes rainbow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes scale {
+    0% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.1); }
+    100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+.new-year-text {
+    position: fixed;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 96px;
+    font-weight: bold;
+    color: #FFD700;
+    text-shadow: 
+        0 0 10px #FF0000,
+        0 0 20px #FF0000,
+        0 0 30px #FF0000,
+        0 0 40px #FF0000;
+    z-index: 10000;
+    animation: neon 1.5s ease-in-out infinite alternate, 
+               bounce 2s ease infinite;
+    font-family: 'ZCOOL XiaoWei', sans-serif;
+    pointer-events: none;
+    letter-spacing: 10px;
+}
+
+@keyframes neon {
+    from {
+        text-shadow: 
+            0 0 10px #FF0000,
+            0 0 20px #FF0000,
+            0 0 30px #FF0000,
+            0 0 40px #FF0000;
+    }
+    to {
+        text-shadow: 
+            0 0 20px #FF0000,
+            0 0 30px #FF0000,
+            0 0 40px #FF0000,
+            0 0 50px #FF8800,
+            0 0 60px #FF8800;
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+} 
